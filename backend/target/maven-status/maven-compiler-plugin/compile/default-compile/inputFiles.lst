@@ -1,0 +1,12 @@
+/Users/calaceantitus/Proiect-PS/backend/src/main/java/com/instagram_clone/instagram_clone/Application.java
+/Users/calaceantitus/Proiect-PS/backend/src/main/java/com/instagram_clone/instagram_clone/config/SecurityConfig.java
+/Users/calaceantitus/Proiect-PS/backend/src/main/java/com/instagram_clone/instagram_clone/controller/HealthController.java
+/Users/calaceantitus/Proiect-PS/backend/src/main/java/com/instagram_clone/instagram_clone/controller/UserController.java
+/Users/calaceantitus/Proiect-PS/backend/src/main/java/com/instagram_clone/instagram_clone/exception/GlobalExceptionHandler.java
+/Users/calaceantitus/Proiect-PS/backend/src/main/java/com/instagram_clone/instagram_clone/exception/UserNotFoundException.java
+/Users/calaceantitus/Proiect-PS/backend/src/main/java/com/instagram_clone/instagram_clone/model/User.java
+/Users/calaceantitus/Proiect-PS/backend/src/main/java/com/instagram_clone/instagram_clone/repository/UserRepository.java
+/Users/calaceantitus/Proiect-PS/backend/src/main/java/com/instagram_clone/instagram_clone/service/UserService.java
+/Users/calaceantitus/Proiect-PS/backend/src/main/java/com/instagram_clone/instagram_clone/service/UserServiceImpl.java
+/Users/calaceantitus/Proiect-PS/backend/src/main/java/dto/UserRequest.java
+/Users/calaceantitus/Proiect-PS/backend/src/main/java/dto/UserResponse.java
