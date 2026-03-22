@@ -1,4 +1,4 @@
-package com.instagram_clone.instagram_clone.exception;
+package com.instagram_clone.core.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

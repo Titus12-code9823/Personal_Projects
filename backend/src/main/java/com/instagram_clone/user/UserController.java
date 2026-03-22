@@ -1,8 +1,7 @@
-package com.instagram_clone.instagram_clone.controller;
+package com.instagram_clone.user;
 
-import com.instagram_clone.instagram_clone.dto.UserRequest;
-import com.instagram_clone.instagram_clone.dto.UserResponse;
-import com.instagram_clone.instagram_clone.service.UserService;
+import com.instagram_clone.user.dto.UserRequest;
+import com.instagram_clone.user.dto.UserResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

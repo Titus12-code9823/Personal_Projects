@@ -1,4 +1,4 @@
-package com.instagram_clone.instagram_clone;
+package com.instagram_clone;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

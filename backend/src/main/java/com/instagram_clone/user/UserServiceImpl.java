@@ -1,10 +1,8 @@
-package com.instagram_clone.instagram_clone.service;
+package com.instagram_clone.user;
 
-import com.instagram_clone.instagram_clone.dto.UserRequest;
-import com.instagram_clone.instagram_clone.dto.UserResponse;
-import com.instagram_clone.instagram_clone.exception.UserNotFoundException;
-import com.instagram_clone.instagram_clone.model.User;
-import com.instagram_clone.instagram_clone.repository.UserRepository;
+import com.instagram_clone.user.dto.UserRequest;
+import com.instagram_clone.user.dto.UserResponse;
+import com.instagram_clone.core.exception.UserNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

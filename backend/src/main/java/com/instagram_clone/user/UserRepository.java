@@ -1,6 +1,5 @@
-package com.instagram_clone.instagram_clone.repository;
+package com.instagram_clone.user;
 
-import com.instagram_clone.instagram_clone.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {

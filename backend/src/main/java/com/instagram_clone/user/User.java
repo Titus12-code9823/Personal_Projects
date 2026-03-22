@@ -1,29 +1,38 @@
-package com.instagram_clone.instagram_clone.dto;
+package com.instagram_clone.user;
 
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
-public class UserResponse {
+@Entity
+@Table(name = "users")
+public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(nullable = false, unique = true, length = 50)
     private String username;
+
+    @Column(nullable = false, unique = true, length = 100)
     private String email;
-    private Integer score;
-    private Boolean isModerator;
-    private Boolean isBlocked;
+
+    @Column(nullable = false, length = 255)
+    private String password;
+
+    @Column(nullable = false)
+    private Integer score = 0;
+
+    @Column(name = "is_moderator", nullable = false)
+    private Boolean isModerator = false;
+
+    @Column(name = "is_blocked", nullable = false)
+    private Boolean isBlocked = false;
+
+    @Column(name = "created_at", nullable = false, updatable = false, insertable = false)
     private LocalDateTime createdAt;
 
-    public UserResponse() {
-    }
-
-    public UserResponse(Long id, String username, String email, Integer score,
-                        Boolean isModerator, Boolean isBlocked, LocalDateTime createdAt) {
-        this.id = id;
-        this.username = username;
-        this.email = email;
-        this.score = score;
-        this.isModerator = isModerator;
-        this.isBlocked = isBlocked;
-        this.createdAt = createdAt;
+    public User() {
     }
 
     public Long getId() {
@@ -36,6 +45,10 @@ public class UserResponse {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public Integer getScore() {
@@ -64,6 +77,10 @@ public class UserResponse {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void setScore(Integer score) {

@@ -1,7 +1,7 @@
-package com.instagram_clone.instagram_clone.service;
+package com.instagram_clone.user;
 
-import com.instagram_clone.instagram_clone.dto.UserRequest;
-import com.instagram_clone.instagram_clone.dto.UserResponse;
+import com.instagram_clone.user.dto.UserRequest;
+import com.instagram_clone.user.dto.UserResponse;
 
 import java.util.List;
 

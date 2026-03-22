@@ -1,4 +1,4 @@
-package com.instagram_clone.instagram_clone.dto;
+package com.instagram_clone.user.dto;
 
 public class UserRequest {
 

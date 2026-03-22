@@ -1,4 +1,4 @@
-package com.instagram_clone.instagram_clone.exception;
+package com.instagram_clone.core.exception;
 
 public class UserNotFoundException extends RuntimeException {
 

@@ -1,4 +1,4 @@
-package com.instagram_clone.instagram_clone.controller;
+package com.instagram_clone.core;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
