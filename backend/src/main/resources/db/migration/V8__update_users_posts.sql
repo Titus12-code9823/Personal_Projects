@@ -1,18 +1,12 @@
--- Migrare V8 pentru ca V1 și V2 fuseseră deja trimise colegilor
-
--- Adăugăm telefonul și corectăm scorul pe useri
 ALTER TABLE users ADD COLUMN IF NOT EXISTS phone_number VARCHAR(20);
 ALTER TABLE users ALTER COLUMN score TYPE DECIMAL(10,2);
 ALTER TABLE users ALTER COLUMN score SET DEFAULT 0.0;
 
--- Modificăm stările din Enum pentru postări conform noilor cerințe 
 ALTER TYPE post_status RENAME VALUE 'POSTED' TO 'JUST_POSTED';
 ALTER TYPE post_status RENAME VALUE 'IN_PROGRESS' TO 'FIRST_REACTIONS';
 ALTER TYPE post_status RENAME VALUE 'RESOLVED' TO 'EXPIRED';
 
--- Actualizăm constrângerile pe tabelul de postări
 ALTER TABLE posts ALTER COLUMN status SET DEFAULT 'JUST_POSTED';
 
--- Facem update pe tabel ca URL-urile goale sa fie stringuri vide si setăm URL-ul imaginii obligatoriu
 UPDATE posts SET image_url = '' WHERE image_url IS NULL;
 ALTER TABLE posts ALTER COLUMN image_url SET NOT NULL;
