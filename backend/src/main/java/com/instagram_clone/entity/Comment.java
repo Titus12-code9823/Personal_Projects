@@ -1,4 +1,5 @@
-package com.instagram_clone.comment;
+package com.instagram_clone.entity;
+
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

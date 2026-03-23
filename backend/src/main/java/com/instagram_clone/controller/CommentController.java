@@ -1,7 +1,9 @@
-package com.instagram_clone.comment;
+package com.instagram_clone.controller;
 
-import com.instagram_clone.comment.dto.CommentRequest;
-import com.instagram_clone.comment.dto.CommentResponse;
+import com.instagram_clone.service.*;
+
+import com.instagram_clone.dto.CommentRequest;
+import com.instagram_clone.dto.CommentResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;

@@ -1,7 +1,10 @@
-package com.instagram_clone.comment;
+package com.instagram_clone.service;
 
-import com.instagram_clone.comment.dto.CommentRequest;
-import com.instagram_clone.comment.dto.CommentResponse;
+import com.instagram_clone.repository.*;
+import com.instagram_clone.entity.*;
+
+import com.instagram_clone.dto.CommentRequest;
+import com.instagram_clone.dto.CommentResponse;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,5 @@
-package com.instagram_clone.comment.dto;
+package com.instagram_clone.dto;
+
 
 import java.time.LocalDateTime;
 

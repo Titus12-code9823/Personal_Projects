@@ -1,4 +1,5 @@
-package com.instagram_clone.user;
+package com.instagram_clone.entity;
+
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
