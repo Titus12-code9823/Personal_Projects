@@ -6,17 +6,21 @@ import com.instagram_clone.entity.*;
 import com.instagram_clone.dto.UserRequest;
 import com.instagram_clone.dto.UserResponse;
 import com.instagram_clone.exception.UserNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository) {
+    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -32,8 +36,9 @@ public class UserServiceImpl implements UserService {
         User user = new User();
         user.setUsername(request.getUsername());
         user.setEmail(request.getEmail());
-        user.setPassword(request.getPassword());
-        user.setScore(request.getScore() != null ? request.getScore() : 0);
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
+        user.setPhoneNumber(request.getPhoneNumber());
+        user.setScore(request.getScore() != null ? request.getScore() : BigDecimal.ZERO);
         user.setIsModerator(request.getIsModerator() != null ? request.getIsModerator() : false);
         user.setIsBlocked(request.getIsBlocked() != null ? request.getIsBlocked() : false);
 
@@ -74,7 +79,8 @@ public class UserServiceImpl implements UserService {
 
         user.setUsername(request.getUsername());
         user.setEmail(request.getEmail());
-        user.setPassword(request.getPassword());
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
+        user.setPhoneNumber(request.getPhoneNumber());
 
         if (request.getScore() != null) {
             user.setScore(request.getScore());
@@ -105,6 +111,7 @@ public class UserServiceImpl implements UserService {
                 user.getId(),
                 user.getUsername(),
                 user.getEmail(),
+                user.getPhoneNumber(),
                 user.getScore(),
                 user.getIsModerator(),
                 user.getIsBlocked(),

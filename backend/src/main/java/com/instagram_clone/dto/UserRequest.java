@@ -1,12 +1,15 @@
 package com.instagram_clone.dto;
 
 
+import java.math.BigDecimal;
+
 public class UserRequest {
 
     private String username;
     private String email;
     private String password;
-    private Integer score;
+    private String phoneNumber;
+    private BigDecimal score;
     private Boolean isModerator;
     private Boolean isBlocked;
 
@@ -37,11 +40,19 @@ public class UserRequest {
         this.password = password;
     }
 
-    public Integer getScore() {
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public BigDecimal getScore() {
         return score;
     }
 
-    public void setScore(Integer score) {
+    public void setScore(BigDecimal score) {
         this.score = score;
     }
 

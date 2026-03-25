@@ -1,6 +1,7 @@
 package com.instagram_clone.dto;
 
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class UserResponse {
@@ -8,7 +9,8 @@ public class UserResponse {
     private Long id;
     private String username;
     private String email;
-    private Integer score;
+    private String phoneNumber;
+    private BigDecimal score;
     private Boolean isModerator;
     private Boolean isBlocked;
     private LocalDateTime createdAt;
@@ -16,11 +18,12 @@ public class UserResponse {
     public UserResponse() {
     }
 
-    public UserResponse(Long id, String username, String email, Integer score,
+    public UserResponse(Long id, String username, String email, String phoneNumber, BigDecimal score,
                         Boolean isModerator, Boolean isBlocked, LocalDateTime createdAt) {
         this.id = id;
         this.username = username;
         this.email = email;
+        this.phoneNumber = phoneNumber;
         this.score = score;
         this.isModerator = isModerator;
         this.isBlocked = isBlocked;
@@ -39,7 +42,11 @@ public class UserResponse {
         return email;
     }
 
-    public Integer getScore() {
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public BigDecimal getScore() {
         return score;
     }
 
@@ -67,7 +74,11 @@ public class UserResponse {
         this.email = email;
     }
 
-    public void setScore(Integer score) {
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setScore(BigDecimal score) {
         this.score = score;
     }
 

@@ -2,6 +2,7 @@ package com.instagram_clone.entity;
 
 
 import jakarta.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 @Entity
@@ -21,8 +22,11 @@ public class User {
     @Column(nullable = false, length = 255)
     private String password;
 
-    @Column(nullable = false)
-    private Integer score = 0;
+    @Column(name = "phone_number", length = 20)
+    private String phoneNumber;
+
+    @Column(nullable = false, precision = 10, scale = 2)
+    private BigDecimal score = BigDecimal.ZERO;
 
     @Column(name = "is_moderator", nullable = false)
     private Boolean isModerator = false;
@@ -52,7 +56,11 @@ public class User {
         return password;
     }
 
-    public Integer getScore() {
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public BigDecimal getScore() {
         return score;
     }
 
@@ -84,7 +92,11 @@ public class User {
         this.password = password;
     }
 
-    public void setScore(Integer score) {
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public void setScore(BigDecimal score) {
         this.score = score;
     }
 
