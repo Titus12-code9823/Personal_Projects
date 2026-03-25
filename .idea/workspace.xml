@@ -5,21 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bc8b3636-db29-4dd1-955e-29315a7410c8" name="Changes" comment="User-Done">
-      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/db/migration/V1__create_users.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/db/migration/V2__create_posts.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/db/migration/V3__create_comments.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/db/migration/V4__create_tags.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/db/migration/V5__create_posts_tags.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/resources/db/migration/V6__create_votes.sql" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="37" />
+    <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -36,6 +31,10 @@
     &quot;accountId&quot;: &quot;4efdf57b-18b3-46c9-ac58-604c8b764e40&quot;
   }
 }</component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
@@ -49,10 +48,17 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "git-widget-placeholder": "Titus-/-user",
     "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
@@ -63,8 +69,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-84258761d1cc-intellij.indexing.shared.core-IU-243.28141.18" />
-        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.28141.18" />
+        <option value="bundled-jdk-30f59d01ecdd-2fc7cc6b9a17-intellij.indexing.shared.core-IU-253.32098.37" />
+        <option value="bundled-js-predefined-d6986cc7102b-9b0f141eb926-JavaScript-IU-253.32098.37" />
       </set>
     </attachedChunks>
   </component>
@@ -79,6 +85,9 @@
       <workItem from="1774009275141" duration="243000" />
       <workItem from="1774009521091" duration="134000" />
       <workItem from="1774009675413" duration="78000" />
+      <workItem from="1774183144452" duration="95000" />
+      <workItem from="1774427542073" duration="20000" />
+      <workItem from="1774427573112" duration="333000" />
     </task>
     <servers />
   </component>
