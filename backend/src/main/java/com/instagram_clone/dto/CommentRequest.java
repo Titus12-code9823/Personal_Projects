@@ -1,11 +1,21 @@
 package com.instagram_clone.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 public class CommentRequest {
 
+    @NotNull(message = "postId is required", groups = ValidationGroups.Create.class)
     private Long postId;
-    private Long userId;
+
+    @NotBlank(message = "text is required", groups = ValidationGroups.Create.class)
+    @Size(max = 1000, message = "text must have at most 1000 characters", groups = {ValidationGroups.Create.class, ValidationGroups.Update.class})
     private String text;
+
+    @Size(max = 500, message = "imageUrl must have at most 500 characters", groups = {ValidationGroups.Create.class, ValidationGroups.Update.class})
+    @Pattern(regexp = "^(https?://).*$", message = "imageUrl must start with http or https", groups = {ValidationGroups.Create.class, ValidationGroups.Update.class})
     private String imageUrl;
 
     public Long getPostId() {
@@ -14,14 +24,6 @@ public class CommentRequest {
 
     public void setPostId(Long postId) {
         this.postId = postId;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
     }
 
     public String getText() {
