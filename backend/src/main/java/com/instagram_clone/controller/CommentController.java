@@ -4,8 +4,11 @@ import com.instagram_clone.service.*;
 
 import com.instagram_clone.dto.CommentRequest;
 import com.instagram_clone.dto.CommentResponse;
+import com.instagram_clone.dto.ValidationGroups;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,8 +32,9 @@ public class CommentController {
     }
 
     @PostMapping
-    public ResponseEntity<CommentResponse> createComment(@RequestBody CommentRequest request) {
-        CommentResponse createdComment = commentService.createComment(request);
+    public ResponseEntity<CommentResponse> createComment(@Validated(ValidationGroups.Create.class) @RequestBody CommentRequest request,
+                                                         Authentication authentication) {
+        CommentResponse createdComment = commentService.createComment(request, authentication.getName());
         return new ResponseEntity<>(createdComment, HttpStatus.CREATED);
     }
 
@@ -49,17 +53,15 @@ public class CommentController {
 
     @PutMapping("/{id}")
     public ResponseEntity<CommentResponse> updateComment(@PathVariable Long id,
-                                                         @RequestBody CommentRequest request,
-                                                         @RequestParam Long requesterUserId,
-                                                         @RequestParam(defaultValue = "false") boolean isModerator) {
-        return ResponseEntity.ok(commentService.updateComment(id, request, requesterUserId, isModerator));
+                                                         @Validated(ValidationGroups.Update.class) @RequestBody CommentRequest request,
+                                                         Authentication authentication) {
+        return ResponseEntity.ok(commentService.updateComment(id, request, authentication.getName()));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteComment(@PathVariable Long id,
-                                                @RequestParam Long requesterUserId,
-                                                @RequestParam(defaultValue = "false") boolean isModerator) {
-        commentService.deleteComment(id, requesterUserId, isModerator);
+                                                Authentication authentication) {
+        commentService.deleteComment(id, authentication.getName());
         return ResponseEntity.ok("Comment deleted successfully");
     }
 }
