@@ -6,14 +6,14 @@ import java.util.List;
 
 public interface PostService {
 
-    PostResponse createPost(PostRequest request);
+    PostResponse createPost(PostRequest request, String requesterUsername);
 
     List<PostResponse> getAllPosts();
 
     PostResponse getPostById(Long id);
 
-    PostResponse updatePost(Long id, PostRequest request);
+    PostResponse updatePost(Long id, PostRequest request, String requesterUsername);
 
-    void deletePost(Long id);
+    void deletePost(Long id, String requesterUsername);
 
 }

@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface CommentService {
 
-    CommentResponse createComment(CommentRequest request);
+    CommentResponse createComment(CommentRequest request, String requesterUsername);
 
     List<CommentResponse> getAllComments();
 
@@ -15,7 +15,7 @@ public interface CommentService {
 
     CommentResponse getCommentById(Long id);
 
-    CommentResponse updateComment(Long id, CommentRequest request, Long requesterUserId, boolean isModerator);
+    CommentResponse updateComment(Long id, CommentRequest request, String requesterUsername);
 
-    void deleteComment(Long id, Long requesterUserId, boolean isModerator);
+    void deleteComment(Long id, String requesterUsername);
 }

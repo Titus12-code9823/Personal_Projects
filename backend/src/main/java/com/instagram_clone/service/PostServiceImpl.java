@@ -5,40 +5,45 @@ import com.instagram_clone.dto.PostResponse;
 import com.instagram_clone.entity.Post;
 import com.instagram_clone.entity.PostStatus;
 import com.instagram_clone.repository.PostRepository;
+import com.instagram_clone.repository.UserRepository;
+import com.instagram_clone.exception.ResourceNotFoundException;
+import com.instagram_clone.exception.UnauthorizedActionException;
+import com.instagram_clone.exception.ConflictException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
 public class PostServiceImpl implements PostService {
 
     private final PostRepository postRepository;
+    private final UserRepository userRepository;
 
-    public PostServiceImpl(PostRepository postRepository) {
+    public PostServiceImpl(PostRepository postRepository, UserRepository userRepository) {
         this.postRepository = postRepository;
+        this.userRepository = userRepository;
     }
 
     @Override
-    public PostResponse createPost(PostRequest request) {
-        validatePostRequest(request);
+    @Transactional
+    public PostResponse createPost(PostRequest request, String requesterUsername) {
+        com.instagram_clone.entity.User requester = getRequesterUser(requesterUsername);
 
         Post post = new Post();
-        post.setUserId(request.getUserId());
+        post.setUserId(requester.getId());
         post.setTitle(request.getTitle());
         post.setText(request.getText());
         post.setImageUrl(request.getImageUrl());
 
         post.setStatus(PostStatus.JUST_POSTED);
-        post.setCreatedAt(LocalDateTime.now());
-        post.setUpdatedAt(LocalDateTime.now());
 
         try {
             Post savedPost = postRepository.save(post);
             return mapToResponse(savedPost);
         } catch (DataIntegrityViolationException ex) {
-            throw new RuntimeException("Invalid user_id for post creation");
+            throw new ConflictException("Invalid user_id for post creation");
         }
     }
 
@@ -53,17 +58,22 @@ public class PostServiceImpl implements PostService {
     @Override
     public PostResponse getPostById(Long id) {
         Post post = postRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Post with id " + id + " not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Post with id " + id + " not found"));
         return mapToResponse(post);
     }
 
     @Override
-    public PostResponse updatePost(Long id, PostRequest request) {
+    @Transactional
+    public PostResponse updatePost(Long id, PostRequest request, String requesterUsername) {
         Post post = postRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Post with id " + id + " not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Post with id " + id + " not found"));
+        com.instagram_clone.entity.User requester = getRequesterUser(requesterUsername);
+
+        if (!post.getUserId().equals(requester.getId()) && !Boolean.TRUE.equals(requester.getIsModerator())) {
+            throw new UnauthorizedActionException("User is not authorized to update this post");
+        }
 
         if (request.getTitle() != null) {
-            if (request.getTitle().isBlank()) throw new RuntimeException("Title cannot be empty");
             post.setTitle(request.getTitle());
         }
 
@@ -75,36 +85,31 @@ public class PostServiceImpl implements PostService {
             post.setImageUrl(request.getImageUrl());
         }
 
-        post.setUpdatedAt(LocalDateTime.now());
-
         try {
             Post updatedPost = postRepository.save(post);
             return mapToResponse(updatedPost);
         } catch (DataIntegrityViolationException ex) {
-            throw new RuntimeException("Error updating post: database integrity violation");
+            throw new ConflictException("Error updating post: database integrity violation");
         }
     }
 
     @Override
-    public void deletePost(Long id) {
+    @Transactional
+    public void deletePost(Long id, String requesterUsername) {
         Post post = postRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Post with id " + id + " not found"));
+                .orElseThrow(() -> new ResourceNotFoundException("Post with id " + id + " not found"));
+        com.instagram_clone.entity.User requester = getRequesterUser(requesterUsername);
+
+        if (!post.getUserId().equals(requester.getId()) && !Boolean.TRUE.equals(requester.getIsModerator())) {
+            throw new UnauthorizedActionException("User is not authorized to delete this post");
+        }
+
         postRepository.delete(post);
     }
 
-    private void validatePostRequest(PostRequest request) {
-        if (request.getUserId() == null) {
-            throw new RuntimeException("userId is required");
-        }
-        if (request.getTitle() == null || request.getTitle().isBlank()) {
-            throw new RuntimeException("Title is required");
-        }
-        if (request.getImageUrl() == null || request.getImageUrl().isBlank()) {
-            throw new RuntimeException("Image URL is required for posts");
-        }
-        if (request.getImageUrl().length() > 500) {
-            throw new RuntimeException("Image URL exceeds 500 characters");
-        }
+    private com.instagram_clone.entity.User getRequesterUser(String requesterUsername) {
+        return userRepository.findByUsername(requesterUsername)
+                .orElseThrow(() -> new ResourceNotFoundException("Authenticated user not found: " + requesterUsername));
     }
 
     private PostResponse mapToResponse(Post post) {

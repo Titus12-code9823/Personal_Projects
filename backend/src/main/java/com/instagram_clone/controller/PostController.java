@@ -2,9 +2,12 @@ package com.instagram_clone.controller;
 
 import com.instagram_clone.dto.PostRequest;
 import com.instagram_clone.dto.PostResponse;
+import com.instagram_clone.dto.ValidationGroups;
 import com.instagram_clone.service.PostService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,8 +23,9 @@ public class PostController {
     }
 
     @PostMapping
-    public ResponseEntity<PostResponse> createPost(@RequestBody PostRequest request) {
-        PostResponse createdPost = postService.createPost(request);
+    public ResponseEntity<PostResponse> createPost(@Validated(ValidationGroups.Create.class) @RequestBody PostRequest request,
+                                                   Authentication authentication) {
+        PostResponse createdPost = postService.createPost(request, authentication.getName());
         return new ResponseEntity<>(createdPost, HttpStatus.CREATED);
     }
 
@@ -36,13 +40,16 @@ public class PostController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<PostResponse> updatePost(@PathVariable Long id, @RequestBody PostRequest request) {
-        return ResponseEntity.ok(postService.updatePost(id, request));
+    public ResponseEntity<PostResponse> updatePost(@PathVariable Long id,
+                                                   @Validated(ValidationGroups.Update.class) @RequestBody PostRequest request,
+                                                   Authentication authentication) {
+        return ResponseEntity.ok(postService.updatePost(id, request, authentication.getName()));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deletePost(@PathVariable Long id) {
-        postService.deletePost(id);
+    public ResponseEntity<String> deletePost(@PathVariable Long id,
+                                             Authentication authentication) {
+        postService.deletePost(id, authentication.getName());
         return ResponseEntity.ok("Post deleted successfully");
     }
 
