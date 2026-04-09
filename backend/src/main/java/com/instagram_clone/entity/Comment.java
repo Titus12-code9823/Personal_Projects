@@ -1,12 +1,9 @@
 package com.instagram_clone.entity;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import jakarta.persistence.*;
 
 import java.time.LocalDateTime;
 
@@ -18,11 +15,13 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "post_id", nullable = false)
-    private Long postId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "post_id", nullable = false)
+    private Post post;
 
-    @Column(name = "user_id", nullable = false)
-    private Long userId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     @Column(name = "text", nullable = false, columnDefinition = "TEXT")
     private String text;
@@ -30,10 +29,12 @@ public class Comment {
     @Column(name = "image_url", length = 500)
     private String imageUrl;
 
-    @Column(name = "created_at", insertable = false, updatable = false)
+    @CreationTimestamp
+    @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
 
-    @Column(name = "updated_at", insertable = false, updatable = false)
+    @UpdateTimestamp
+    @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
     @Column(name = "vote_count", nullable = false)
@@ -47,20 +48,48 @@ public class Comment {
         this.id = id;
     }
 
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
+    }
+
     public Long getPostId() {
-        return postId;
+        return post != null ? post.getId() : null;
     }
 
     public void setPostId(Long postId) {
-        this.postId = postId;
+        // Deprecated: Use setPost() instead
+        // Kept for backward compatibility with existing code
+        if (postId != null && (this.post == null || !postId.equals(this.post.getId()))) {
+            Post tempPost = new Post();
+            tempPost.setId(postId);
+            this.post = tempPost;
+        }
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Long getUserId() {
-        return userId;
+        return user != null ? user.getId() : null;
     }
 
     public void setUserId(Long userId) {
-        this.userId = userId;
+        // Deprecated: Use setUser() instead
+        // Kept for backward compatibility with existing code
+        if (userId != null && (this.user == null || !userId.equals(this.user.getId()))) {
+            User tempUser = new User();
+            tempUser.setId(userId);
+            this.user = tempUser;
+        }
     }
 
     public String getText() {
@@ -93,5 +122,13 @@ public class Comment {
 
     public void setVoteCount(Integer voteCount) {
         this.voteCount = voteCount;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }
