@@ -1,0 +1,91 @@
+<div class="post-detail-page">
+  <a routerLink="/posts" class="back-link">← Înapoi la postări</a>
+
+  @if (loading) {
+    <div class="state-box">Se încarcă postarea...</div>
+  }
+
+  @if (error) {
+    <div class="state-box error">{{ error }}</div>
+  }
+
+  @if (post && !loading) {
+    <article class="post-card">
+      @if (post.imageUrl) {
+        <div class="post-image">
+          <img [src]="post.imageUrl" [alt]="post.title" />
+        </div>
+      }
+
+      <div class="post-content">
+        <div class="post-meta">
+          <span class="status">{{ post.status }}</span>
+          <span class="date">{{ post.createdAt | date:'medium' }}</span>
+        </div>
+
+        @if (isEditing) {
+          <div class="edit-form">
+            @if (editError) {
+              <div class="state-box error">{{ editError }}</div>
+            }
+
+            <label>
+              Titlu
+              <input [(ngModel)]="editTitle" type="text" />
+            </label>
+
+            <label>
+              Text
+              <textarea [(ngModel)]="editText" rows="5"></textarea>
+            </label>
+
+            <label>
+              Image URL
+              <input [(ngModel)]="editImageUrl" type="url" />
+            </label>
+
+            <div class="actions">
+              <button type="button" class="secondary" (click)="cancelEdit()">Renunță</button>
+              <button type="button" [disabled]="editLoading" (click)="saveEdit()">
+                {{ editLoading ? 'Se salvează...' : 'Salvează' }}
+              </button>
+            </div>
+          </div>
+        } @else {
+          <h1>{{ post.title }}</h1>
+          <p class="text">{{ post.text }}</p>
+
+          <div class="actions">
+            <button type="button" (click)="togglePostLike()">
+              {{ postLiked ? 'Unlike' : 'Like' }}
+            </button>
+            <button type="button" class="secondary" (click)="startEdit()">Editează</button>
+            <button type="button" class="danger" (click)="deletePost()">Șterge</button>
+          </div>
+        }
+      </div>
+    </article>
+
+  }
+
+  @if (postId !== null) {
+    <section class="comments-section">
+      <h2>Comentarii</h2>
+
+      <app-comment-form
+        [postId]="postId"
+        (commentCreated)="onCommentCreated()"
+      ></app-comment-form>
+
+      @if (commentsLoading) {
+        <div class="state-box">Se încarcă comentariile...</div>
+      } @else {
+        <app-comment-list
+          [comments]="comments"
+          (commentChanged)="onCommentChanged()"
+          (commentLikeToggled)="onCommentLikeToggled($event)"
+        ></app-comment-list>
+      }
+    </section>
+  }
+</div>

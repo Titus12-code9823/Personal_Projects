@@ -25,6 +25,9 @@ public class User {
     @Column(nullable = false, length = 255)
     private String password;
 
+    @Column(length = 500)
+    private String description;
+
     @Column(name = "phone_number", length = 20)
     private String phoneNumber;
 
@@ -70,6 +73,10 @@ public class User {
         return phoneNumber;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     public BigDecimal getScore() {
         return score;
     }
@@ -100,6 +107,10 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public void setPhoneNumber(String phoneNumber) {

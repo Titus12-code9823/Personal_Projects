@@ -1,0 +1,30 @@
+<div class="post-form-page">
+  <a routerLink="/posts" class="back-link">← Înapoi la postări</a>
+
+  <form class="post-form" (ngSubmit)="submit()">
+    <h1>Adaugă postare</h1>
+
+    @if (error) {
+      <div class="state-box error">{{ error }}</div>
+    }
+
+    <label>
+      Titlu
+      <input [(ngModel)]="title" name="title" type="text" />
+    </label>
+
+    <label>
+      Text
+      <textarea [(ngModel)]="text" name="text" rows="6"></textarea>
+    </label>
+
+    <label>
+      Image URL
+      <input [(ngModel)]="imageUrl" name="imageUrl" type="url" placeholder="https://..." />
+    </label>
+
+    <button type="submit" [disabled]="loading">
+      {{ loading ? 'Se creează...' : 'Creează postare' }}
+    </button>
+  </form>
+</div>

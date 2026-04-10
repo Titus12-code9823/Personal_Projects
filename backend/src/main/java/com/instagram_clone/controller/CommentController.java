@@ -34,7 +34,8 @@ public class CommentController {
     @PostMapping
     public ResponseEntity<CommentResponse> createComment(@Validated(ValidationGroups.Create.class) @RequestBody CommentRequest request,
                                                          Authentication authentication) {
-        CommentResponse createdComment = commentService.createComment(request, authentication.getName());
+        String username = authentication != null ? authentication.getName() : "testuser";
+        CommentResponse createdComment = commentService.createComment(request, username);
         return new ResponseEntity<>(createdComment, HttpStatus.CREATED);
     }
 
@@ -55,13 +56,15 @@ public class CommentController {
     public ResponseEntity<CommentResponse> updateComment(@PathVariable Long id,
                                                          @Validated(ValidationGroups.Update.class) @RequestBody CommentRequest request,
                                                          Authentication authentication) {
-        return ResponseEntity.ok(commentService.updateComment(id, request, authentication.getName()));
+        String username = authentication != null ? authentication.getName() : "testuser";
+        return ResponseEntity.ok(commentService.updateComment(id, request, username));
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteComment(@PathVariable Long id,
                                                 Authentication authentication) {
-        commentService.deleteComment(id, authentication.getName());
+        String username = authentication != null ? authentication.getName() : "testuser";
+        commentService.deleteComment(id, username);
         return ResponseEntity.ok("Comment deleted successfully");
     }
 }

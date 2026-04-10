@@ -10,6 +10,7 @@ public class UserResponse {
     private String username;
     private String email;
     private String phoneNumber;
+    private String description;
     private BigDecimal score;
     private Boolean isModerator;
     private Boolean isBlocked;
@@ -18,12 +19,13 @@ public class UserResponse {
     public UserResponse() {
     }
 
-    public UserResponse(Long id, String username, String email, String phoneNumber, BigDecimal score,
-                        Boolean isModerator, Boolean isBlocked, LocalDateTime createdAt) {
+    public UserResponse(Long id, String username, String email, String phoneNumber, String description,
+                        BigDecimal score, Boolean isModerator, Boolean isBlocked, LocalDateTime createdAt) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.phoneNumber = phoneNumber;
+        this.description = description;
         this.score = score;
         this.isModerator = isModerator;
         this.isBlocked = isBlocked;
@@ -44,6 +46,10 @@ public class UserResponse {
 
     public String getPhoneNumber() {
         return phoneNumber;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public BigDecimal getScore() {
@@ -76,6 +82,10 @@ public class UserResponse {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public void setScore(BigDecimal score) {

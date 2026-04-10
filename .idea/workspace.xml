@@ -5,23 +5,53 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bc8b3636-db29-4dd1-955e-29315a7410c8" name="Changes" comment="User-Done">
-<<<<<<< HEAD
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-=======
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/instagram_clone/post/Post.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/instagram_clone/post/PostController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/instagram_clone/post/PostRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/instagram_clone/post/PostService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/instagram_clone/post/PostServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/instagram_clone/post/PostStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/instagram_clone/post/dto/PostRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/backend/src/main/java/com/instagram_clone/post/dto/PostResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/components/comment/comment.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/components/comments/comment-form/comment-form.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/components/comments/comment-form/comment-form.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/components/comments/comment-form/comment-form.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/components/comments/comment-list/comment-list.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/components/comments/comment-list/comment-list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/components/comments/comment-list/comment-list.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/components/posts/post-detail/post-detail.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/components/posts/post-detail/post-detail.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/components/posts/post-detail/post-detail.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/components/posts/post-form/post-form.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/components/posts/post-form/post-form.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/components/posts/post-form/post-form.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/components/posts/post-list/post-list.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/components/posts/post-list/post-list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/components/posts/post-list/post-list.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/models/comment-request.model.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/models/comment.model.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/models/post-request.model.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/models/post.model.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/post/post.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/services/comment/comment.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/services/post/post-list/post-list.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/services/post/post-list/post-list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/services/post/post-list/post-list.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/services/post/post.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/pom.xml" afterDir="false" />
->>>>>>> 8e10ed1 (structure change)
+      <change beforePath="$PROJECT_DIR$/backend/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/backend/mvnw" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/instagram_clone/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/instagram_clone/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/instagram_clone/controller/CommentController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/instagram_clone/controller/CommentController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/instagram_clone/controller/PostController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/instagram_clone/controller/PostController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/instagram_clone/dto/UserRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/instagram_clone/dto/UserRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/instagram_clone/dto/UserResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/instagram_clone/dto/UserResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/instagram_clone/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/instagram_clone/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/instagram_clone/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/instagram_clone/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/instagram_clone/service/CommentServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/instagram_clone/service/CommentServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/instagram_clone/service/PostServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/instagram_clone/service/PostServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/instagram_clone/service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/instagram_clone/service/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application-example.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/db/migration/V8__update_users_posts.sql" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/db/migration/V8__update_users_posts.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/app.config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/app.config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/app.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/app.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/app.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/app.routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/app.routes.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/app.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/app.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,8 +59,16 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="37" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+        <option value="HTML File" />
+        <option value="CSS File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -47,9 +85,16 @@
     &quot;accountId&quot;: &quot;4efdf57b-18b3-46c9-ac58-604c8b764e40&quot;
   }
 }</component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
@@ -62,9 +107,9 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-<<<<<<< HEAD
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
     &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
@@ -72,6 +117,7 @@
     &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;Titus-/-user&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
@@ -80,59 +126,10 @@
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;/Applications/IntelliJ IDEA.app/Contents/plugins/javascript-plugin/jsLanguageServicesImpl/external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
-=======
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "Spring Boot.Application.executor": "Run",
-    "git-widget-placeholder": "Biborka",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "D:/utcn/AN3_SEM2/ps/proiect/Proiect-PS/backend",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler",
-    "vue.rearranger.settings.migration": "true"
-  },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "postgresql"
-    ]
-  }
-}]]></component>
-  <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType">
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="Application" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
-      <module name="instagram-clone" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.instagram_clone.Application" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-  </component>
->>>>>>> 8e10ed1 (structure change)
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -155,6 +152,12 @@
       <workItem from="1774183144452" duration="95000" />
       <workItem from="1774427542073" duration="20000" />
       <workItem from="1774427573112" duration="333000" />
+      <workItem from="1775762888545" duration="702000" />
+      <workItem from="1775763621269" duration="1853000" />
+      <workItem from="1775805864472" duration="860000" />
+      <workItem from="1775806736520" duration="9026000" />
+      <workItem from="1775817495119" duration="350000" />
+      <workItem from="1775818039192" duration="590000" />
     </task>
     <servers />
   </component>

@@ -1,11 +1,10 @@
 package com.instagram_clone.service;
 
-import com.instagram_clone.repository.*;
-import com.instagram_clone.entity.*;
-
 import com.instagram_clone.dto.UserRequest;
 import com.instagram_clone.dto.UserResponse;
+import com.instagram_clone.entity.User;
 import com.instagram_clone.exception.UserNotFoundException;
+import com.instagram_clone.repository.UserRepository;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -40,6 +39,7 @@ public class UserServiceImpl implements UserService {
         user.setUsername(request.getUsername());
         user.setEmail(request.getEmail());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
+        user.setDescription(request.getDescription());
         user.setPhoneNumber(request.getPhoneNumber());
         user.setScore(BigDecimal.ZERO);
         user.setIsModerator(false);
@@ -95,6 +95,7 @@ public class UserServiceImpl implements UserService {
         user.setUsername(request.getUsername());
         user.setEmail(request.getEmail());
         user.setPhoneNumber(request.getPhoneNumber());
+        user.setDescription(request.getDescription());
 
         if (request.getPassword() != null && !request.getPassword().isBlank()) {
             user.setPassword(passwordEncoder.encode(request.getPassword()));
@@ -138,7 +139,8 @@ public class UserServiceImpl implements UserService {
 
     private User getRequesterUser(String requesterUsername) {
         return userRepository.findByUsername(requesterUsername)
-                .orElseThrow(() -> new com.instagram_clone.exception.ResourceNotFoundException("Authenticated user not found: " + requesterUsername));
+                .orElseThrow(() -> new com.instagram_clone.exception.ResourceNotFoundException(
+                        "Authenticated user not found: " + requesterUsername));
     }
 
     private void ensureSelfOrModerator(User requester, Long targetUserId) {
@@ -153,6 +155,7 @@ public class UserServiceImpl implements UserService {
                 user.getUsername(),
                 user.getEmail(),
                 user.getPhoneNumber(),
+                user.getDescription(),
                 user.getScore(),
                 user.getIsModerator(),
                 user.getIsBlocked(),
