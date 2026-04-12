@@ -1,0 +1,124 @@
+<div class="profile-page">
+  @if (!isLoggedIn) {
+    <div class="state-box warning">Trebuie să fii autentificat ca să vezi profilul.</div>
+  } @else {
+    @if (loading) {
+      <div class="state-box">Se încarcă profilul...</div>
+    }
+
+    @if (error) {
+      <div class="state-box error">{{ error }}</div>
+    }
+
+    @if (!loading && !error && user) {
+      <section class="profile-card">
+        <div class="avatar-wrap">
+          <img class="avatar" [src]="user.avatarUrl" [alt]="user.name" />
+          <button type="button" class="avatar-hover-btn" (click)="openAvatarEditor()" aria-label="Schimbă avatar">
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path d="M9 4.5 10.5 3h3L15 4.5H18A3 3 0 0 1 21 7.5v9A3 3 0 0 1 18 19.5H6A3 3 0 0 1 3 16.5v-9A3 3 0 0 1 6 4.5h3Zm3 12a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9Zm0-1.8a2.7 2.7 0 1 1 0-5.4 2.7 2.7 0 0 1 0 5.4Z" />
+            </svg>
+          </button>
+        </div>
+
+        <div class="profile-details">
+          <h1>{{ user.name }}</h1>
+          <p class="description">{{ user.description }}</p>
+          <p class="meta">Role: {{ user.role }}</p>
+          <p class="meta">Score: {{ user.score | number:'1.0-2' }}</p>
+
+          @if (showAvatarEditor) {
+            <form class="avatar-edit-form" (ngSubmit)="saveAvatar()">
+              @if (avatarError) {
+                <div class="state-box error">{{ avatarError }}</div>
+              }
+
+              <label>
+                Link avatar
+                <input type="url" [(ngModel)]="avatarDraftUrl" name="avatarDraftUrl" placeholder="https://..." />
+              </label>
+
+              <div class="avatar-edit-actions">
+                <button type="submit" [disabled]="avatarSaving">
+                  {{ avatarSaving ? 'Se actualizează...' : 'Salvează avatar' }}
+                </button>
+                <button type="button" class="secondary" [disabled]="avatarSaving" (click)="cancelAvatarEditor()">Renunță</button>
+              </div>
+            </form>
+          }
+        </div>
+      </section>
+
+      <section class="posts-section">
+        <div class="section-header">
+          <h2>Postările mele</h2>
+          <a routerLink="/posts/new" class="create-link">+ Creează postare</a>
+        </div>
+
+        @if (userPosts.length === 0) {
+          <div class="state-box">Acest utilizator nu are postări încă.</div>
+        } @else {
+          <div class="posts-grid">
+            @for (post of userPosts; track trackByPostId($index, post)) {
+              <article class="post-card" (contextmenu)="openPostContextMenu($event, post)">
+                @if (post.imageUrl) {
+                  <img [src]="post.imageUrl" [alt]="post.title" />
+                }
+                <div class="post-content">
+                  @if (editingPostId === post.id) {
+                    <form class="inline-edit-form" (ngSubmit)="saveEditedPost(post)">
+                      @if (editError) {
+                        <div class="state-box error">{{ editError }}</div>
+                      }
+
+                      <label>
+                        Titlu
+                        <input type="text" [(ngModel)]="editTitle" [name]="'editTitle-' + post.id" />
+                      </label>
+
+                      <label>
+                        Text
+                        <textarea rows="4" [(ngModel)]="editText" [name]="'editText-' + post.id"></textarea>
+                      </label>
+
+                      <label>
+                        Image URL
+                        <input type="url" [(ngModel)]="editImageUrl" [name]="'editImageUrl-' + post.id" />
+                      </label>
+
+                      <div class="inline-edit-actions">
+                        <button type="submit" [disabled]="editLoading">
+                          {{ editLoading ? 'Se salvează...' : 'Salvează' }}
+                        </button>
+                        <button type="button" class="secondary" [disabled]="editLoading" (click)="cancelInlineEdit()">Anulează</button>
+                      </div>
+                    </form>
+                  } @else {
+                    <h3>{{ post.title }}</h3>
+                    <p>{{ post.text }}</p>
+                  }
+                </div>
+              </article>
+            }
+          </div>
+        }
+
+        @if (contextMenuVisible && contextTargetPost) {
+          <div
+            class="post-context-menu"
+            [style.left.px]="contextMenuX"
+            [style.top.px]="contextMenuY"
+            (click)="$event.stopPropagation()"
+          >
+            <button type="button" (click)="startEditFromContextMenu()">Editează</button>
+            <button type="button" class="danger" (click)="deleteFromContextMenu()">Șterge</button>
+          </div>
+        }
+      </section>
+    }
+
+    @if (!loading && !error && !user) {
+      <div class="state-box">Nu există date de profil disponibile.</div>
+    }
+  }
+</div>

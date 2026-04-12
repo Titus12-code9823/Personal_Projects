@@ -1,0 +1,53 @@
+.comment-form {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding: 16px;
+  border: 1px solid #e6e6e6;
+  border-radius: 14px;
+  background: #fff;
+}
+
+.comment-form h3 {
+  margin: 0;
+}
+
+.comment-form label {
+  display: grid;
+  gap: 6px;
+  font-size: 0.95rem;
+}
+
+.comment-form textarea,
+.comment-form input {
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font: inherit;
+}
+
+.comment-form button {
+  justify-self: start;
+  border: 0;
+  border-radius: 10px;
+  padding: 10px 14px;
+  background: #111827;
+  color: #fff;
+  cursor: pointer;
+}
+
+.comment-form button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.state-box {
+  padding: 12px;
+  border-radius: 10px;
+  background: #f4f4f4;
+}
+
+.state-box.error {
+  background: #ffe7e7;
+  color: #9b1c1c;
+}

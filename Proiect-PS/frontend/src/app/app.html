@@ -1,0 +1,23 @@
+<div class="app-shell">
+  <header class="app-header">
+    <div class="brand">
+      <h1>Instagram Clone</h1>
+      <p>{{ currentPageName }}</p>
+    </div>
+    @if (!isAuthPage) {
+      <nav class="app-nav">
+        @if (!isLoggedIn) {
+          <a routerLink="/login" routerLinkActive="active">Login</a>
+        } @else {
+          <button type="button" (click)="logout()">Log out</button>
+        }
+        <a routerLink="/posts" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Postări</a>
+        <a routerLink="/profile" routerLinkActive="active">Profil</a>
+      </nav>
+    }
+  </header>
+
+  <main class="app-content">
+    <router-outlet />
+  </main>
+</div>

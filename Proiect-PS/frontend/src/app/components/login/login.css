@@ -1,0 +1,117 @@
+.login-page {
+  min-height: calc(100dvh - 140px);
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.login-card {
+  width: min(420px, 100%);
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.06);
+}
+
+.login-card h1 {
+  margin: 0 0 8px;
+}
+
+.login-card > p {
+  margin: 0 0 16px;
+  color: #4b5563;
+}
+
+.state-box {
+  padding: 12px;
+  border-radius: 10px;
+  margin-bottom: 14px;
+}
+
+.state-box.error {
+  background: #ffe7e7;
+  color: #9b1c1c;
+}
+
+.state-box.success {
+  background: #e7f7eb;
+  color: #166534;
+}
+
+.login-form {
+  display: grid;
+  gap: 12px;
+}
+
+.login-form label {
+  display: grid;
+  gap: 6px;
+}
+
+.login-form input {
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font: inherit;
+}
+
+.login-form button {
+  margin-top: 8px;
+  border: 0;
+  border-radius: 10px;
+  padding: 10px 14px;
+  background: #111827;
+  color: #fff;
+  cursor: pointer;
+}
+
+.login-form button:disabled {
+  opacity: 0.75;
+  cursor: not-allowed;
+}
+
+.links-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.links-container.login-links {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.forgot-password-link {
+  display: inline-block;
+  text-decoration: none;
+  color: #f59e0b;
+  font-size: 0.9rem;
+}
+
+.forgot-password-link:hover {
+  text-decoration: underline;
+}
+
+.switch-link {
+  background: none;
+  border: 0;
+  color: #2563eb;
+  text-align: left;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+}
+
+.switch-link:hover {
+  text-decoration: underline;
+}
+
+.switch-link:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
