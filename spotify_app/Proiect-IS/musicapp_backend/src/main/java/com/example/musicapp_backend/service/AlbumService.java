@@ -23,7 +23,6 @@ public class AlbumService {
         this.artistRepo = artistRepo;
     }
 
-    // -------------------- READ --------------------
 
     public List<AlbumDto> all() {
         return albumRepo.findAll().stream()
@@ -49,7 +48,6 @@ public class AlbumService {
                 .toList();
     }
 
-    // -------------------- WRITE --------------------
 
     public AlbumDto create(AlbumCreateRequest req) {
         validate(req);
@@ -103,7 +101,6 @@ public class AlbumService {
         albumRepo.delete(album);
     }
 
-    // -------------------- VALIDATION --------------------
 
     private void validate(AlbumCreateRequest req) {
         if (req == null) {
@@ -120,7 +117,6 @@ public class AlbumService {
         }
     }
 
-    // -------------------- MAPPING --------------------
 
     private AlbumDto toDto(Album album) {
         return new AlbumDto(
