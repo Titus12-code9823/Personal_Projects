@@ -24,7 +24,6 @@ public class SongController {
         this.storageService = storageService;
     }
 
-    // -------------------- READ --------------------
 
     /** Get all songs */
     @GetMapping
@@ -53,7 +52,6 @@ public class SongController {
         throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Provide 'title' or 'artist' query param.");
     }
 
-    // -------------------- PLAYBACK --------------------
 
     public record PlayResponse(String playUrl) {}
 
@@ -77,7 +75,6 @@ public class SongController {
         return ResponseEntity.ok(new PlayResponse(presignedUrl));
     }
 
-    // -------------------- WRITE --------------------
 
     /** Create a new song */
     @PostMapping
@@ -87,16 +84,7 @@ public class SongController {
         return ResponseEntity.created(URI.create("/api/v1/songs/" + dto.id())).body(dto);
     }
 
-    //-------------------- 1.UPLOAD PREP -------------------
-    // is handled in MediaController via createUploadUrl
-    // PostMapping to "/upload-url"
-    // the JSON response from that contains "s3Key" and "uploadUrl"
-
-    //------------------2. UPLOAD TO S3---------------------
-    // the frontend uploads to the "uploadUrl" from step 1
-
-    //-------------------- 3.FINALIZE UPLOAD --------------
-    /** Finalize upload: verify S3 key exists, then create */
+ 
     @PostMapping("/finalize")
     public ResponseEntity<SongDto> finalizeUpload(@RequestBody SongCreateRequest req) {
         validate(req);
@@ -154,7 +142,6 @@ public class SongController {
         return ResponseEntity.noContent().build();
     }
 
-    // -------------------- VALIDATION --------------------
 
     private void validate(SongCreateRequest req) {
         if (req == null) {
