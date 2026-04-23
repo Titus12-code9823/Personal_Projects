@@ -28,7 +28,6 @@ public class SongService {
         this.albumRepo = albumRepo;
     }
 
-    // -------------------- READ --------------------
 
     public List<SongDto> all() {
         List<Song> songs = songRepo.findAll();
@@ -66,7 +65,6 @@ public class SongService {
                 .toList();
     }
 
-    // -------------------- WRITE --------------------
 
     public SongDto create(SongCreateRequest req) {
         validate(req);
@@ -130,7 +128,6 @@ public class SongService {
         songRepo.delete(song);
     }
 
-    // -------------------- VALIDATION --------------------
 
     private void validate(SongCreateRequest req) {
         if (req == null) {
@@ -150,7 +147,6 @@ public class SongService {
         }
     }
 
-    // -------------------- MAPPING --------------------
 
     private SongDto toDto(Song song) {
         return new SongDto(
