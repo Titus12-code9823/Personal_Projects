@@ -29,7 +29,6 @@ public class PlaylistService {
         this.userRepo = userRepo;
     }
 
-    // -------------------- READ --------------------
 
     @Transactional(readOnly = true) // Optimization for read operations
     public List<PlaylistDto> all() {
@@ -74,7 +73,6 @@ public class PlaylistService {
         return findAllByUserId(user.getId());
     }
 
-    // -------------------- WRITE --------------------
 
     public PlaylistDto create(PlaylistCreateRequest req) {
         // Validation specific to Creation (we need a user)
@@ -138,7 +136,6 @@ public class PlaylistService {
         playlistRepo.delete(playlist);
     }
 
-    // -------------------- SONG MANAGEMENT --------------------
 
     // Renamed to 'addSong' to match Controller
     public PlaylistDto addSong(Long playlistId, Long songId) {
@@ -166,7 +163,6 @@ public class PlaylistService {
         return toDto(updated);
     }
 
-    // -------------------- VALIDATION --------------------
 
     private void validateCommon(PlaylistCreateRequest req) {
         if (req == null) throw new IllegalArgumentException("Request body is required.");
@@ -174,7 +170,6 @@ public class PlaylistService {
         // Removed userId check here because 'update' might not send a userId
     }
 
-    // -------------------- MAPPING --------------------
 
     private PlaylistDto toDto(Playlist playlist) {
         return new PlaylistDto(
