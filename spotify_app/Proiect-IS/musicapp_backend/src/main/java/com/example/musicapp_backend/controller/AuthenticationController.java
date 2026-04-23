@@ -22,7 +22,6 @@ public class AuthenticationController {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
-    // -------------------- REGISTER --------------------
     @PostMapping("/register")
     public ResponseEntity<AuthResponse> register(@RequestBody AuthRequest request) {
 
@@ -49,7 +48,6 @@ public class AuthenticationController {
         return ResponseEntity.ok(new AuthResponse(token));
     }
 
-    // -------------------- LOGIN --------------------
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(@RequestBody AuthRequest request) {
 
