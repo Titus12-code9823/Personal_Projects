@@ -20,7 +20,6 @@ public class ArtistController {
         this.service = service;
     }
 
-    // -------------------- READ --------------------
 
     @GetMapping
     public ResponseEntity<List<ArtistDto>> all() {
@@ -33,7 +32,6 @@ public class ArtistController {
         return ResponseEntity.ok(service.get(id));
     }
 
-    // -------------------- WRITE --------------------
 
     @PostMapping
     public ResponseEntity<ArtistDto> create(@RequestBody ArtistCreateRequest req) {
