@@ -1,12 +1,17 @@
-
-
-public class OrderProcessor extends Thread {
+public class OrderProcessor implements Runnable {
     private final Inventory inventory;
     private final Order order;
+    private Bill bill;
+    private final int billId;
 
-    public OrderProcessor(Inventory inventory, Order order) {
+    public OrderProcessor(Inventory inventory, Order order, int billId) {
         this.inventory = inventory;
         this.order = order;
+        this.billId = billId;
+    }
+
+    public Bill getBill() {
+        return bill;
     }
 
     @Override
@@ -17,16 +22,16 @@ public class OrderProcessor extends Thread {
         boolean success = inventory.processOrder(order);
 
         if (success) {
-            order.setStatus("COMPLETED");
+            bill = new Bill(billId, order);
             System.out.println(Thread.currentThread().getName() +
                     " completed order " + order.getOrderId() +
-                    " for " + order.getCustomerName() +
-                    " | Total: " + order.getTotal());
+                    " for customer " + order.getCustomer().getName() +
+                    " | Total = " + order.getTotalAmount());
+            bill.printBill();
         } else {
-            order.setStatus("REJECTED - INSUFFICIENT STOCK");
             System.out.println(Thread.currentThread().getName() +
                     " rejected order " + order.getOrderId() +
-                    " for " + order.getCustomerName());
+                    " for customer " + order.getCustomer().getName());
         }
     }
 }
