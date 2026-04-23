@@ -18,7 +18,6 @@ public class ArtistService {
         this.artistRepo = artistRepo;
     }
 
-    // -------------------- READ --------------------
 
     public List<ArtistDto> all() {
         return artistRepo.findAll().stream()
@@ -38,7 +37,6 @@ public class ArtistService {
                 .toList();
     }
 
-    // -------------------- WRITE --------------------
 
     public ArtistDto create(ArtistCreateRequest req) {
         validate(req);
@@ -80,7 +78,6 @@ public class ArtistService {
         artistRepo.delete(artist);
     }
 
-    // -------------------- VALIDATION --------------------
 
     private void validate(ArtistCreateRequest req) {
         if (req == null) {
@@ -92,7 +89,6 @@ public class ArtistService {
         // genre is optional → no validation
     }
 
-    // -------------------- MAPPING --------------------
 
     private ArtistDto toDto(Artist artist) {
         return new ArtistDto(
