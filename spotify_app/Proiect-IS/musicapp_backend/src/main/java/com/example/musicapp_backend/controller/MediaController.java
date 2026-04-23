@@ -17,7 +17,7 @@ public class MediaController {
         this.storageService = storageService;
     }
 
-
+    public final STS real;
     // Defines what the client sends to us
     public record UploadRequest(String filename, String contentType, String prefix) {}
 
