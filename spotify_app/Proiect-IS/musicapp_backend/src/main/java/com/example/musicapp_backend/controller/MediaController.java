@@ -17,7 +17,6 @@ public class MediaController {
         this.storageService = storageService;
     }
 
-    // -------------------- DTOs --------------------
 
     // Defines what the client sends to us
     public record UploadRequest(String filename, String contentType, String prefix) {}
@@ -25,7 +24,6 @@ public class MediaController {
     // Defines what we send back
     public record UploadResponse(String s3Key, String uploadUrl) {}
 
-    // -------------------- ENDPOINTS --------------------
 
     @PostMapping("/upload-url")
     public ResponseEntity<UploadResponse> createUploadUrl(@RequestBody UploadRequest req) {
