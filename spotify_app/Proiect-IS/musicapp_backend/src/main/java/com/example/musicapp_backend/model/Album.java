@@ -41,7 +41,6 @@ public class Album {
     @Setter
     private Artist artist; // optionally @Setter if you want to allow changing the main artist
 
-    // -------------------- Helper Methods --------------------
 
     public void addSong(Song song) {
         songs.add(song);
