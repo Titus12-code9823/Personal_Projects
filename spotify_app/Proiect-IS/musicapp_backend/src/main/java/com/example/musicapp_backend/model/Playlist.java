@@ -42,7 +42,6 @@ public class Playlist {
 
     public Playlist(String name) {this.name = name;}
 
-    // -------------------- Helper Methods --------------------
 
     public void addSong(Song song) {
         songs.add(song);
