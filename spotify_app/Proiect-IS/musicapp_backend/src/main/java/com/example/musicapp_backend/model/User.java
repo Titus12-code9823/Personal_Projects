@@ -41,7 +41,6 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Playlist> playlists = new ArrayList<>(); // no setter
 
-    // -------------------- Helper Methods --------------------
 
     public void addPlaylist(Playlist playlist) {
         playlists.add(playlist);
