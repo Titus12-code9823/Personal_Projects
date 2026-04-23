@@ -49,10 +49,10 @@ public class Inventory {
     }
 
     public void displayInventory() {
-        System.out.println("\n===== INVENTORY =====");
+        System.out.println("\nINVENTORY ");
         for (Product product : products.values()) {
             System.out.println(product);
         }
-        System.out.println("=====================\n");
+        System.out.println("\n");
     }
 }
