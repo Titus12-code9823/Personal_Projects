@@ -5,10 +5,13 @@ public class Inventory {
     private final Map<Integer, Product> products;
 
     public Inventory() {
-        products = new HashMap<>();
+        this.products = new HashMap<>();
     }
 
     public void addProduct(Product product) {
+        if (product == null) {
+            throw new IllegalArgumentException("Product cannot be null.");
+        }
         products.put(product.getId(), product);
     }
 
@@ -17,9 +20,21 @@ public class Inventory {
     }
 
     public synchronized boolean processOrder(Order order) {
+        if (order == null) {
+            throw new IllegalArgumentException("Order cannot be null.");
+        }
+
+        if (order.isEmpty()) {
+            order.setStatus(OrderStatus.REJECTED);
+            return false;
+        }
+
+        order.setStatus(OrderStatus.PROCESSING);
+
         for (OrderItem item : order.getItems()) {
             Product product = item.getProduct();
-            if (product.getStock() < item.getQuantity()) {
+            if (!product.hasEnoughStock(item.getQuantity())) {
+                order.setStatus(OrderStatus.REJECTED);
                 return false;
             }
         }
@@ -29,13 +44,15 @@ public class Inventory {
             product.decreaseStock(item.getQuantity());
         }
 
+        order.setStatus(OrderStatus.COMPLETED);
         return true;
     }
 
-    public void displayProducts() {
-        System.out.println("\nCurrent Inventory:");
+    public void displayInventory() {
+        System.out.println("\n===== INVENTORY =====");
         for (Product product : products.values()) {
             System.out.println(product);
         }
+        System.out.println("=====================\n");
     }
 }
