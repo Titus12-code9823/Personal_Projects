@@ -1,0 +1,124 @@
+<div class="login-page">
+  <section class="login-card">
+    <h1>{{ isRegisterMode ? 'Creează cont' : 'Login' }}</h1>
+    <p>{{ isRegisterMode ? 'Completează datele pentru un cont nou.' : 'Autentifică-te pentru a vedea datele profilului tău.' }}</p>
+
+    @if (error) {
+      <div class="state-box error">{{ error }}</div>
+    }
+
+    @if (success) {
+      <div class="state-box success">{{ success }}</div>
+    }
+
+    @if (!isRegisterMode) {
+      <form (ngSubmit)="submit()" class="login-form">
+        <label>
+          Username
+          <input
+            type="text"
+            name="username"
+            [(ngModel)]="username"
+            autocomplete="username"
+            [disabled]="loading"
+            required
+          />
+        </label>
+
+        <label>
+          Parolă
+          <input
+            type="password"
+            name="password"
+            [(ngModel)]="password"
+            autocomplete="current-password"
+            [disabled]="loading"
+            required
+          />
+        </label>
+
+        <button type="submit" [disabled]="loading">
+          {{ loading ? 'Așteaptă...' : 'Login' }}
+        </button>
+      </form>
+
+      <div class="links-container login-links">
+        <a routerLink="/forgot-password" class="forgot-password-link">Ai uitat parola?</a>
+        <button type="button" class="switch-link" [disabled]="loading" (click)="switchToRegister()">
+          Nu ai cont? Creează unul
+        </button>
+      </div>
+    } @else {
+      <form (ngSubmit)="submitRegister()" class="login-form">
+        <label>
+          Username
+          <input
+            type="text"
+            name="registerUsername"
+            [(ngModel)]="registerUsername"
+            autocomplete="username"
+            [disabled]="loading"
+            required
+          />
+        </label>
+
+        <label>
+          Email
+          <input
+            type="email"
+            name="registerEmail"
+            [(ngModel)]="registerEmail"
+            autocomplete="email"
+            [disabled]="loading"
+            required
+          />
+        </label>
+
+        <label>
+          Număr de telefon
+          <input
+            type="tel"
+            name="registerPhoneNumber"
+            [(ngModel)]="registerPhoneNumber"
+            autocomplete="tel"
+            [disabled]="loading"
+          />
+        </label>
+
+        <label>
+          Parolă
+          <input
+            type="password"
+            name="registerPassword"
+            [(ngModel)]="registerPassword"
+            autocomplete="new-password"
+            [disabled]="loading"
+            required
+          />
+        </label>
+
+        <label>
+          Confirmă parola
+          <input
+            type="password"
+            name="registerConfirmPassword"
+            [(ngModel)]="registerConfirmPassword"
+            autocomplete="new-password"
+            [disabled]="loading"
+            required
+          />
+        </label>
+
+        <button type="submit" [disabled]="loading">
+          {{ loading ? 'Se creează contul...' : 'Creează cont' }}
+        </button>
+      </form>
+
+      <div class="links-container">
+        <button type="button" class="switch-link" [disabled]="loading" (click)="switchToLogin()">
+          Ai deja cont? Login
+        </button>
+      </div>
+    }
+  </section>
+</div>

@@ -1,0 +1,42 @@
+<div class="posts-page">
+  <header class="page-header">
+    <h1>Postări</h1>
+    <p>Vezi toate postările disponibile.</p>
+  </header>
+
+  @if (loading) {
+    <div class="state-box">Se încarcă postările...</div>
+  }
+
+  @if (error) {
+    <div class="state-box error">{{ error }}</div>
+  }
+
+  @if (!loading && !error && posts.length === 0) {
+    <div class="state-box">Nu există postări încă.</div>
+  }
+
+  <section class="posts-grid">
+    @for (post of posts; track trackByPostId($index, post)) {
+      <article class="post-card">
+        <div class="post-image" *ngIf="post.imageUrl">
+          <img [src]="post.imageUrl" [alt]="post.title" />
+        </div>
+
+        <div class="post-content">
+          <div class="post-meta">
+            <span class="status">{{ post.status }}</span>
+            <span class="date">{{ post.createdAt | date:'medium' }}</span>
+          </div>
+
+          <h2>{{ post.title }}</h2>
+          <p class="text">{{ post.text }}</p>
+
+          <div class="post-actions">
+            <a [routerLink]="['/posts', post.id]" class="details-link">Vezi detalii</a>
+          </div>
+        </div>
+      </article>
+    }
+  </section>
+</div>

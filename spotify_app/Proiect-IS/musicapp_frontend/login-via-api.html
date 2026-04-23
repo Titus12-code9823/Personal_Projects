@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login via API</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      background: #020617;
+      color: #f8fafc;
+    }
+    .container {
+      background: #1e293b;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.3);
+    }
+    h1 {
+      margin-top: 0;
+    }
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #cbd5e1;
+    }
+    input {
+      width: 100%;
+      padding: 0.75rem;
+      border-radius: 8px;
+      border: 1px solid #475569;
+      background: #0f172a;
+      color: #f8fafc;
+      font-size: 1rem;
+    }
+    button {
+      width: 100%;
+      padding: 0.85rem;
+      border-radius: 10px;
+      border: none;
+      background: #22c55e;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+    button:hover {
+      background: #16a34a;
+    }
+    button:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+    .result {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      border-radius: 8px;
+      background: #0f172a;
+      border: 1px solid #475569;
+    }
+    .success {
+      color: #4ade80;
+    }
+    .error {
+      color: #ef4444;
+    }
+    .token {
+      word-break: break-all;
+      font-family: monospace;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+      padding: 0.5rem;
+      background: #020617;
+      border-radius: 4px;
+    }
+    .info {
+      color: #94a3b8;
+      font-size: 0.9rem;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Login via REST API</h1>
+    <p class="info">Login directly through <code>/auth/login</code> endpoint and save token to localStorage</p>
+    
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required autocomplete="username">
+      </div>
+      
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required autocomplete="current-password">
+      </div>
+      
+      <button type="submit" id="submitBtn">Login via API</button>
+    </form>
+    
+    <div id="result"></div>
+  </div>
+
+  <script>
+    const API_BASE = 'http://localhost:8080';
+    const TOKEN_KEY = 'musicapp_token';
+
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      const submitBtn = document.getElementById('submitBtn');
+      const resultDiv = document.getElementById('result');
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      
+      submitBtn.disabled = true;
+      resultDiv.innerHTML = '<p>Logging in...</p>';
+      
+      try {
+        const response = await fetch(`${API_BASE}/auth/login`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ username, password }),
+        });
+        
+        if (!response.ok) {
+          const errorData = await response.json().catch(() => ({ token: response.statusText }));
+          throw new Error(errorData.token || `HTTP ${response.status}: ${response.statusText}`);
+        }
+        
+        const data = await response.json();
+        const token = data.token;
+        
+        if (!token) {
+          throw new Error('No token received from server');
+        }
+        
+        // Save token to localStorage
+        localStorage.setItem(TOKEN_KEY, token);
+        
+        // Show success
+        resultDiv.innerHTML = `
+          <div class="result success">
+            <strong>✅ Login successful!</strong>
+            <p>Token saved to localStorage with key: <code>${TOKEN_KEY}</code></p>
+            <div class="token">${token.substring(0, 50)}...</div>
+            <p style="margin-top: 1rem;">
+              <a href="/" style="color: #22c55e; text-decoration: underline;">Go to app →</a>
+            </p>
+          </div>
+        `;
+        
+      } catch (error) {
+        resultDiv.innerHTML = `
+          <div class="result error">
+            <strong>❌ Login failed:</strong>
+            <p>${error.message}</p>
+            <p class="info">Make sure backend is running on ${API_BASE}</p>
+          </div>
+        `;
+      } finally {
+        submitBtn.disabled = false;
+      }
+    });
+    
+    // Check if already logged in
+    const existingToken = localStorage.getItem(TOKEN_KEY);
+    if (existingToken) {
+      document.getElementById('result').innerHTML = `
+        <div class="result success">
+          <strong>Already logged in!</strong>
+          <p>Token exists in localStorage</p>
+          <p style="margin-top: 1rem;">
+            <a href="/" style="color: #22c55e; text-decoration: underline;">Go to app →</a>
+          </p>
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>
